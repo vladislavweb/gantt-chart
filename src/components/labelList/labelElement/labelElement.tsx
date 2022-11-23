@@ -1,4 +1,5 @@
-import { FC, useCallback, useState } from "react";
+import { FC, useContext } from "react";
+import { DataContext } from "../../../providers";
 import { EnrichedChart } from "../../../utils";
 import "./labelElement.scss";
 
@@ -14,13 +15,8 @@ interface Props {
 }
 
 const LabelElement: FC<Props> = ({ data }) => {
+  const { hiddenLevels, toggleLevel } = useContext(DataContext);
   const { level } = data;
-
-  const [isOpen, setIsOpen] = useState(true);
-
-  const toggle = useCallback(() => {
-    setIsOpen((value) => !value);
-  }, [isOpen]);
 
   const getLevelIcon = () => {
     switch (level) {
@@ -51,7 +47,7 @@ const LabelElement: FC<Props> = ({ data }) => {
         }}
       >
         {data.sub && (
-          <button className="label-element__collapse-button" onClick={toggle}>
+          <button className="label-element__collapse-button" onClick={() => toggleLevel(data.id)}>
             <img src={CollapseArrow} alt="collapse button" />
           </button>
         )}
@@ -72,7 +68,8 @@ const LabelElement: FC<Props> = ({ data }) => {
         )}
       </li>
 
-      {isOpen && data.sub?.map((elementData) => <LabelElement data={elementData} />)}
+      {!hiddenLevels.includes(data.id) &&
+        data.sub?.map((elementData) => <LabelElement data={elementData} />)}
     </>
   );
 };
