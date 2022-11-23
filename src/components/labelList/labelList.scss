@@ -1,0 +1,25 @@
+.label-list {
+  max-width: 390px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border-right: 1px solid var(--primary-border-color);
+
+  .label-list__header {
+    height: var(--height-label-header);
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-black-color);
+    background-color: var(--primary-background-color);
+  }
+
+  & > * {
+    border-bottom: 1px solid var(--primary-border-color);
+  }
+
+  li:first-of-type {
+    border-top: 1px solid var(--primary-border-color);
+  }
+}
