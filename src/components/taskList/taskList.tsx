@@ -49,13 +49,22 @@ const TaskList: FC = () => {
 
           return (
             <div
-              className="task-list__task-duration"
+              className="task-duration"
               style={{
                 top: MARGIN_TOP * (index + 1) + CELL_PADDING + TASK_HEADER_HEIGHT,
                 left: CELL_WIDTH * DIFFERENCE_IN_DAYS,
-                width: CELL_WIDTH * TASK_DURATION || CELL_WIDTH,
               }}
-            ></div>
+              key={task.id}
+            >
+              <div
+                className="task-duration__interval"
+                style={{
+                  width: CELL_WIDTH * TASK_DURATION || CELL_WIDTH,
+                }}
+              ></div>
+
+              <div className="task-duration__title">{task.title}</div>
+            </div>
           );
         })}
     </div>
