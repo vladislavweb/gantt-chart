@@ -1,0 +1,62 @@
+.task-list {
+  position: relative;
+  flex: 1;
+  display: flex;
+  overflow-x: hidden;
+
+  .task-element {
+    display: flex;
+    flex-direction: column;
+
+    .task-element__section {
+      height: calc(var(--height-label-header) / 2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary-background-color);
+      border-bottom: 1px solid var(--primary-border-color);
+      font-size: 12px;
+      color: var(--primary-black-color);
+    }
+
+    .task-element__days {
+      height: calc(var(--height-label-header) / 2);
+      display: flex;
+      background-color: var(--primary-background-color);
+
+      .task-element__days__day {
+        width: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-bottom: 1px solid var(--primary-border-color);
+        font-size: 12px;
+        color: var(--primary-black-color);
+      }
+
+      .task-element__days__day:nth-child(even) {
+        border-right: 1px solid var(--primary-border-color);
+        border-left: 1px solid var(--primary-border-color);
+      }
+    }
+
+    .task-element__cells {
+      display: flex;
+      flex: 1;
+
+      .task-element__cells__cell {
+        width: 22px;
+      }
+
+      .task-element__cells__cell:nth-child(even) {
+        border-right: 1px solid var(--primary-border-color);
+        border-left: 1px solid var(--primary-border-color);
+      }
+    }
+  }
+
+  .task-element:nth-child(even) {
+    border-right: 1px solid var(--primary-border-color);
+    border-left: 1px solid var(--primary-border-color);
+  }
+}
