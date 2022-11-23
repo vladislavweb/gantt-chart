@@ -8,17 +8,17 @@
     border: 1px solid;
     border-radius: 4px;
 
-    &--low-priority {
+    &--blue {
       background-color: #e2ebff;
       border-color: #497cf6;
     }
 
-    &--medium-priority {
+    &--green {
       background-color: #cff0d6;
       border-color: #2db77b;
     }
 
-    &--high-priority {
+    &--yellow {
       background-color: #fff2e0;
       border-color: #ffa530;
     }

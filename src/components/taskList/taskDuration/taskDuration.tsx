@@ -43,9 +43,9 @@ const TaskDuration: FC<Props> = ({ data }) => {
       >
         <div
           className={classNames("task-duration__interval", {
-            "task-duration__interval--low-priority": data.priority === 0,
-            "task-duration__interval--medium-priority": data.priority === 1,
-            "task-duration__interval--high-priority": data.priority === 2,
+            "task-duration__interval--blue": data.level === 1,
+            "task-duration__interval--green": data.level === 3 || data.level === 4,
+            "task-duration__interval--yellow": data.level === 2 || data.level === 5,
           })}
           style={{
             width: CELL_WIDTH * TASK_DURATION || CELL_WIDTH,
