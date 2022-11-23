@@ -7,7 +7,7 @@ export const flatTasks = (data?: Chart) => {
     return [];
   }
 
-  const result: Omit<Chart, "sub">[] = [];
+  const result: Tasks = [];
 
   const { id, period_end, period_start, title } = data;
 

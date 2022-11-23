@@ -1,23 +1,24 @@
 import moment from "moment";
 import { Data } from "../providers/data/data";
-import { flatTasks } from "./flatTasks";
+import { flatTasks, Tasks } from "./flatTasks";
 import { sortTasksByDate } from "./sortTasksByDate";
 
-export interface TaskElement {
+export interface DisplayTaskElement {
   section: string;
   days: string[];
 }
 
-export const taskListMapper = (data: Data) => {
-  const result: TaskElement[] = [];
+export type DisplayTaskElements = DisplayTaskElement[];
 
-  if (data) {
-    const sortedTasksByDate = sortTasksByDate(flatTasks(data.chart));
+export const taskListMapper = (sortedTasksByDate?: Tasks) => {
+  const result: DisplayTaskElements = [];
+
+  if (sortedTasksByDate) {
     const firstDate = new Date(sortedTasksByDate[0].period_start);
     let start = new Date(`${firstDate.getFullYear()}-${firstDate.getMonth() + 1}-01`);
 
     for (let i = 0; i < 8; i++) {
-      const element: TaskElement = {
+      const element: DisplayTaskElement = {
         section: `${moment(start).format("DD MMM")} - ${moment(start)
           .add(6, "day")
           .format("DD MMM")}`,
