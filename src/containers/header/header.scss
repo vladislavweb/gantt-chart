@@ -1,0 +1,39 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+
+  .header__title {
+    span {
+      font-size: 24px;
+      line-height: 28px;
+      color: var(--primary-black-color);
+    }
+  }
+
+  .header__button-wrapper {
+    .download-button {
+      padding: 11px 16px;
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+      border: 1px solid var(--primary-border-color);
+      border-radius: 10px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--primary-background-color);
+      }
+
+      .download-button__icon {
+        margin-right: 8px;
+      }
+
+      .download-button__text {
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+        color: var(--primary-black-color);
+      }
+    }
+  }
+}
