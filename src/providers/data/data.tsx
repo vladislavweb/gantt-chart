@@ -1,4 +1,6 @@
 import { createContext, FC, ReactNode, useState } from "react";
+  enrichData,
+  EnrichedData,
 
 export interface Chart {
   id: number;
@@ -15,7 +17,7 @@ export interface Data {
 }
 
 interface DataContext {
-  data?: Data;
+  data?: EnrichedData;
   loadData: () => Promise<void>;
 }
 
@@ -28,12 +30,14 @@ export const Context = createContext<DataContext>({
 });
 
 const DataProvider: FC<Props> = ({ children }) => {
-  const [data, setData] = useState<Data>();
+  const [data, setData] = useState<EnrichedData>();
 
   const loadData = async () => {
     fetch("http://82.202.204.94/tmp/test.php")
       .then((data) => data.json())
-      .then((data) => setData(data));
+      .then((data: Data) => {
+        setData(enrichData(data));
+      });
   };
 
   return <Context.Provider value={{ data, loadData }}>{children}</Context.Provider>;
