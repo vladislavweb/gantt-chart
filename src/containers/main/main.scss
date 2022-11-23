@@ -1,7 +1,18 @@
 .main {
+  position: relative;
   margin-top: 18px;
   display: flex;
   flex: 1;
   border: 1px solid var(--primary-border-color);
   border-radius: 10px;
+
+  .main__shadow-box {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    height: calc(100% + 2px);
+    width: 20px;
+    background-color: var(--white);
+    box-shadow: -4px 0px 8px 0px rgba(16, 31, 43, 0.1);
+  }
 }

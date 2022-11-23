@@ -6,6 +6,7 @@ const Main: FC = () => (
   <main className="main">
     <LabelList />
     <TaskList />
+    <div className="main__shadow-box"></div>
   </main>
 );
 
