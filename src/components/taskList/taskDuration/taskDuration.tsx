@@ -58,7 +58,7 @@ const TaskDuration: FC<Props> = ({ data }) => {
       </div>
 
       {!hiddenLevels.includes(data.id) &&
-        data.sub?.map((elementData) => <TaskDuration data={elementData} />)}
+        data.sub?.map((elementData) => <TaskDuration key={elementData.id} data={elementData} />)}
     </>
   );
 };

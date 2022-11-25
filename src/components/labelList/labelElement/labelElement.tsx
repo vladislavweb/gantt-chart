@@ -75,7 +75,7 @@ const LabelElement: FC<Props> = ({ data }) => {
       </li>
 
       {!hiddenLevels.includes(data.id) &&
-        data.sub?.map((elementData) => <LabelElement data={elementData} />)}
+        data.sub?.map((elementData) => <LabelElement key={elementData.id} data={elementData} />)}
     </>
   );
 };
