@@ -1,11 +1,10 @@
 import { createContext, FC, ReactNode, useCallback, useState } from "react";
 import {
-  DisplayTaskElements,
+  CalendarItems,
   enrichData,
   EnrichedData,
-  flatTasks,
-  sortTasksByDate,
-  taskListMapper,
+  getAllTasks,
+  getCalendarItems,
   Tasks,
 } from "../../utils";
 
@@ -25,9 +24,8 @@ export interface Data {
 
 interface DataContext {
   data?: EnrichedData;
-  displayTaskElements?: DisplayTaskElements;
+  calendarItems?: CalendarItems;
   tasks?: Tasks;
-  sortedTasksByDate?: Tasks;
   hiddenLevels: number[];
   loadData: () => Promise<void>;
   toggleLevel: (id: number) => void;
@@ -45,9 +43,8 @@ export const Context = createContext<DataContext>({
 
 const DataProvider: FC<Props> = ({ children }) => {
   const [data, setData] = useState<EnrichedData>();
-  const [displayTaskElements, setDisplayTaskElements] = useState<DisplayTaskElements>();
+  const [calendarItems, setCalendarItems] = useState<CalendarItems>();
   const [tasks, setTasks] = useState<Tasks>();
-  const [sortedTasksByDate, setSortedTasksByDate] = useState<Tasks>();
   const [hiddenLevels, setHiddenLevels] = useState<number[]>([]);
 
   const loadData = async () => {
@@ -55,12 +52,10 @@ const DataProvider: FC<Props> = ({ children }) => {
       .then((data) => data.json())
       .then((data: Data) => {
         setData(enrichData(data));
-        const flatedTasks = flatTasks(data.chart);
-        const sortedTasks = sortTasksByDate(flatedTasks);
+        const allTasks = getAllTasks(data.chart);
         setData(data);
-        setTasks(flatedTasks);
-        setSortedTasksByDate(sortedTasks);
-        setDisplayTaskElements(taskListMapper(sortedTasks));
+        setTasks(allTasks);
+        setCalendarItems(getCalendarItems(allTasks));
       });
   };
 
@@ -83,9 +78,8 @@ const DataProvider: FC<Props> = ({ children }) => {
     <Context.Provider
       value={{
         data,
-        displayTaskElements,
+        calendarItems,
         tasks,
-        sortedTasksByDate,
         hiddenLevels,
         loadData,
         toggleLevel,

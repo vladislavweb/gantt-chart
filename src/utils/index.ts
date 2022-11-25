@@ -1,8 +1,8 @@
-export { flatTasks } from "./flatTasks";
+export { getAllTasks } from "./getAllTasks";
 export { sortTasksByDate } from "./sortTasksByDate";
-export { taskListMapper } from "./taskListMapper";
+export { getCalendarItems } from "./getCalendarItems";
 export { enrichData } from "./enrichData";
 
-export type { Tasks } from "./flatTasks";
-export type { DisplayTaskElement, DisplayTaskElements } from "./taskListMapper";
+export type { Tasks } from "./getAllTasks";
+export type { CalendarItem, CalendarItems } from "./getCalendarItems";
 export type { EnrichedChart, EnrichedData } from "./enrichData";

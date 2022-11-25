@@ -5,17 +5,17 @@ import { TaskDuration } from "./taskDuration";
 import "./taskList.scss";
 
 const TaskList: FC = () => {
-  const { data, displayTaskElements } = useContext(DataContext);
+  const { data, calendarItems } = useContext(DataContext);
 
   return (
     <div className="task-list">
-      {displayTaskElements &&
-        displayTaskElements.map((taskData) => (
-          <div className="task-element" key={taskData.section}>
-            <div className="task-element__section">{taskData.section}</div>
+      {calendarItems &&
+        calendarItems.map((calendarItem) => (
+          <div className="task-element" key={calendarItem.section}>
+            <div className="task-element__section">{calendarItem.section}</div>
 
             <div className="task-element__days">
-              {taskData.days.map((day) => (
+              {calendarItem.days.map((day) => (
                 <div className="task-element__days__day" key={day}>
                   {moment(day).format("D")}
                 </div>
@@ -23,7 +23,7 @@ const TaskList: FC = () => {
             </div>
 
             <div className="task-element__cells">
-              {taskData.days.map((day) => (
+              {calendarItem.days.map((day) => (
                 <div className="task-element__cells__cell" key={day}></div>
               ))}
             </div>

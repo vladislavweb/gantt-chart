@@ -2,7 +2,7 @@ import { FC, useContext } from "react";
 import classNames from "classnames";
 import moment from "moment";
 import { DataContext } from "../../../providers";
-import { EnrichedChart } from "../../../utils";
+import { EnrichedChart, sortTasksByDate } from "../../../utils";
 import "./taskDuration.scss";
 
 const CELL_WIDTH = 22;
@@ -15,11 +15,13 @@ interface Props {
 }
 
 const TaskDuration: FC<Props> = ({ data }) => {
-  const { tasks, sortedTasksByDate, hiddenLevels } = useContext(DataContext);
+  const { tasks, hiddenLevels } = useContext(DataContext);
 
-  if (!tasks || !sortedTasksByDate) {
+  if (!tasks) {
     return null;
   }
+
+  const sortedTasksByDate = sortTasksByDate(tasks);
 
   const SMALLEST_DATE = sortedTasksByDate[0].period_start;
 

@@ -1,24 +1,24 @@
 import moment from "moment";
-import { Data } from "../providers/data/data";
-import { flatTasks, Tasks } from "./flatTasks";
+import { Tasks } from "./getAllTasks";
 import { sortTasksByDate } from "./sortTasksByDate";
 
-export interface DisplayTaskElement {
+export interface CalendarItem {
   section: string;
   days: string[];
 }
 
-export type DisplayTaskElements = DisplayTaskElement[];
+export type CalendarItems = CalendarItem[];
 
-export const taskListMapper = (sortedTasksByDate?: Tasks) => {
-  const result: DisplayTaskElements = [];
+export const getCalendarItems = (tasks?: Tasks): CalendarItems => {
+  const calendarItems: CalendarItems = [];
 
-  if (sortedTasksByDate) {
+  if (tasks) {
+    const sortedTasksByDate = sortTasksByDate(tasks);
     const firstDate = new Date(sortedTasksByDate[0].period_start);
     let start = new Date(`${firstDate.getFullYear()}-${firstDate.getMonth() + 1}-01`);
 
     for (let i = 0; i < 8; i++) {
-      const element: DisplayTaskElement = {
+      const calendarItem: CalendarItem = {
         section: `${moment(start).format("DD MMM")} - ${moment(start)
           .add(6, "day")
           .format("DD MMM")}`,
@@ -26,14 +26,14 @@ export const taskListMapper = (sortedTasksByDate?: Tasks) => {
       };
 
       for (let e = 0; e < 7; e++) {
-        element.days.push(moment(start).format());
+        calendarItem.days.push(moment(start).format());
 
         start = new Date(start.setDate(start.getDate() + 1));
       }
 
-      result.push(element);
+      calendarItems.push(calendarItem);
     }
   }
 
-  return result;
+  return calendarItems;
 };
