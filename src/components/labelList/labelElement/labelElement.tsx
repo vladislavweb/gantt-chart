@@ -1,4 +1,5 @@
 import { FC, useContext } from "react";
+import classNames from "classnames";
 import { DataContext } from "../../../providers";
 import { EnrichedChart } from "../../../utils";
 import "./labelElement.scss";
@@ -47,7 +48,12 @@ const LabelElement: FC<Props> = ({ data }) => {
         }}
       >
         {data.sub && (
-          <button className="label-element__collapse-button" onClick={() => toggleLevel(data.id)}>
+          <button
+            className={classNames("label-element__collapse-button", {
+              "label-element__collapse-button--hidden": hiddenLevels.includes(data.id),
+            })}
+            onClick={() => toggleLevel(data.id)}
+          >
             <img src={CollapseArrow} alt="collapse button" />
           </button>
         )}

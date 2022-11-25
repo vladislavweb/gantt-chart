@@ -21,6 +21,11 @@
     border-width: 0;
     background-color: transparent;
     cursor: pointer;
+    transition: transform 0.5s ease;
+
+    &--hidden {
+      transform: rotate(-180deg);
+    }
   }
 
   .label-element__icon {
