@@ -53,7 +53,6 @@ const DataProvider: FC<Props> = ({ children }) => {
       .then((data: Data) => {
         setData(enrichData(data));
         const allTasks = getAllTasks(data.chart);
-        setData(data);
         setTasks(allTasks);
         setCalendarItems(getCalendarItems(allTasks));
       });
