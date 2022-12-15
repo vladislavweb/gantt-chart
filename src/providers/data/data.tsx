@@ -7,6 +7,7 @@ import {
   getCalendarItems,
   Tasks,
 } from "../../utils";
+import localData from "../../assets/data.json";
 
 export interface Chart {
   id: number;
@@ -48,14 +49,10 @@ const DataProvider: FC<Props> = ({ children }) => {
   const [hiddenLevels, setHiddenLevels] = useState<number[]>([]);
 
   const loadData = async () => {
-    fetch("http://82.202.204.94/tmp/test.php")
-      .then((data) => data.json())
-      .then((data: Data) => {
-        setData(enrichData(data));
-        const allTasks = getAllTasks(data.chart);
-        setTasks(allTasks);
-        setCalendarItems(getCalendarItems(allTasks));
-      });
+    setData(enrichData(localData));
+    const allTasks = getAllTasks(localData.chart);
+    setTasks(allTasks);
+    setCalendarItems(getCalendarItems(allTasks));
   };
 
   const toggleLevel = useCallback(
