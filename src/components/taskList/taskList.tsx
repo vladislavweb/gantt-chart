@@ -1,5 +1,4 @@
 import { FC, useContext } from "react";
-import moment from "moment";
 import { DataContext } from "../../providers";
 import { TaskDuration } from "./taskDuration";
 import "./taskList.scss";
@@ -16,8 +15,8 @@ const TaskList: FC = () => {
 
             <div className="task-element__days">
               {calendarItem.days.map((day) => (
-                <div className="task-element__days__day" key={day}>
-                  {moment(day).format("D")}
+                <div className="task-element__days__day" key={`${calendarItem.section}-${day}`}>
+                  {day}
                 </div>
               ))}
             </div>
